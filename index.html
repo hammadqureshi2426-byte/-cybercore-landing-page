@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080a10">
+<meta name="description" content="CYBERCORE — Beyond human limits. Enter the next evolution.">
+<title>CYBERCORE — Beyond Human Limits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#080a10;
+  --panel:#10141e;
+  --cyan:#56efff;
+  --purple:#a78bfa;
+  --muted:#8993a7;
+  --line:rgba(86,239,255,.17);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body {
+  background:var(--bg); color:#f4f7ff;
+  font-family:Inter,sans-serif; overflow-x:hidden;
+}
+body::before {
+  content:""; position:fixed; inset:0; pointer-events:none;
+  z-index:5; opacity:.16;
+  background-image:linear-gradient(rgba(86,239,255,.045) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(86,239,255,.045) 1px,transparent 1px);
+  background-size:48px 48px;
+  mask-image:linear-gradient(to bottom,black,transparent 90%);
+}
+a { color:inherit; text-decoration:none; }
+button { font:inherit; cursor:pointer; }
+header {
+  height:82px; padding:0 7%; display:flex; align-items:center;
+  justify-content:space-between; border-bottom:1px solid #ffffff0d;
+  position:relative; z-index:10;
+}
+.logo { font:700 21px Orbitron,sans-serif; letter-spacing:2px; }
+.logo span { color:var(--cyan); }
+nav { display:flex; align-items:center; gap:34px; }
+nav a { font-size:12px; color:#aab3c5; transition:.25s; }
+nav a:hover { color:var(--cyan); }
+.nav-cta,.primary {
+  padding:13px 19px; background:var(--cyan); color:#071016;
+  font-size:11px; font-weight:800; letter-spacing:1px;
+  border:1px solid var(--cyan); transition:.25s;
+}
+.nav-cta:hover,.primary:hover {
+  background:transparent; color:var(--cyan);
+  box-shadow:0 0 24px #56efff25;
+}
+.menu { display:none; background:none; border:0; color:white; font-size:25px; }
+.hero {
+  min-height:690px; padding:75px 7% 65px; display:grid;
+  grid-template-columns:1fr 1fr; align-items:center; gap:28px;
+  position:relative; overflow:hidden;
+}
+.hero::after {
+  content:""; position:absolute; width:420px; height:420px;
+  background:#5738bb20; filter:blur(100px);
+  top:20%; right:5%; pointer-events:none;
+}
+.eyebrow {
+  color:var(--cyan); font:11px Orbitron,sans-serif;
+  letter-spacing:3px; margin-bottom:26px;
+}
+.eyebrow::before { content:"// "; color:var(--purple); }
+h1 {
+  font:800 clamp(42px,6vw,78px)/1.08 Orbitron,sans-serif;
+  letter-spacing:-3px; max-width:680px;
+}
+h1 .outline {
+  color:transparent; -webkit-text-stroke:1px var(--cyan);
+}
+.description {
+  color:var(--muted); line-height:1.9; font-size:14px;
+  max-width:430px; margin:26px 0 30px;
+}
+.actions { display:flex; gap:13px; flex-wrap:wrap; }
+.secondary {
+  padding:13px 19px; background:transparent;
+  border:1px solid #ffffff30; color:white;
+  font-size:11px; letter-spacing:1px; transition:.25s;
+}
+.secondary:hover { border-color:var(--purple); color:var(--purple); }
+.metrics {
+  display:flex; gap:32px; margin-top:47px;
+  padding-top:24px; border-top:1px solid #ffffff16;
+}
+.metric strong { display:block; font:600 21px Orbitron; }
+.metric small { display:block; color:var(--muted); font-size:10px; margin-top:7px; }
+.visual {
+  min-height:490px; position:relative; display:grid;
+  place-items:center; isolation:isolate;
+}
+.orbit {
+  width:min(410px,90%); aspect-ratio:1; border-radius:50%;
+  border:1px solid #56efff26; position:absolute;
+  animation:rotate 35s linear infinite;
+}
+.orbit::before,.orbit::after {
+  content:""; position:absolute; inset:25px; border:1px dashed #a78bfa42;
+  border-radius:50%;
+}
+.orbit::after { inset:65px; border-style:solid; border-color:#56efff25; }
+.orbit-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:var(--cyan); box-shadow:0 0 18px var(--cyan);
+  position:absolute; top:40px; left:60px;
+}
+.portrait {
+  width:min(355px,83%); aspect-ratio:4/5; object-fit:cover;
+  position:relative; z-index:1;
+  filter:contrast(1.08) saturate(.85);
+  mask-image:linear-gradient(to bottom,black 70%,transparent 100%);
+}
+.visual-label {
+  position:absolute; z-index:2; padding:12px 15px;
+  background:#0b111bdc; border:1px solid var(--line);
+  backdrop-filter:blur(12px); font:10px Orbitron,sans-serif;
+  letter-spacing:1px;
+}
+.visual-label small { display:block; color:var(--muted); margin-top:6px; font:10px Inter; }
+.label-left { left:0; top:25%; }
+.label-right { right:0; bottom:19%; }
+.pulse { display:inline-block; width:6px; height:6px;
+  border-radius:50%; background:#6bffb1; margin-right:7px;
+  box-shadow:0 0 10px #6bffb1; }
+.status-bar {
+  margin:0 7%; display:flex; justify-content:space-between;
+  gap:15px; flex-wrap:wrap; padding:17px 0;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  color:#8691a6; font:10px Orbitron,sans-serif; letter-spacing:1px;
+}
+.status-bar span:first-child { color:var(--cyan); }
+section.content { padding:105px 7%; }
+.section-head { display:flex; justify-content:space-between; gap:25px;
+  align-items:end; margin-bottom:40px; }
+h2 { font:600 clamp(27px,4vw,42px)/1.2 Orbitron,sans-serif; }
+h2 span { color:var(--cyan); }
+.section-head p { max-width:340px; color:var(--muted); font-size:13px; line-height:1.8; }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.card {
+  padding:28px; background:linear-gradient(145deg,#111723,#0b0e16);
+  border:1px solid #ffffff12; position:relative; overflow:hidden;
+  transition:transform .3s,border-color .3s;
+}
+.card:hover { transform:translateY(-6px); border-color:#56efff60; }
+.card::after { content:""; position:absolute; height:2px; left:0; right:100%;
+  bottom:0; background:var(--cyan); transition:right .3s; }
+.card:hover::after { right:0; }
+.card .number { color:var(--purple); font:12px Orbitron; }
+.card .symbol { font-size:27px; margin:27px 0 19px; color:var(--cyan); }
+.card h3 { font:500 16px Orbitron; margin-bottom:13px; }
+.card p { color:var(--muted); font-size:12px; line-height:1.9; }
+.cta {
+  margin:0 7% 90px; padding:65px 25px; text-align:center;
+  border:1px solid var(--line);
+  background:radial-gradient(ellipse at center,#17323b55,transparent 70%);
+}
+.cta p { color:var(--muted); font-size:13px; line-height:1.8; margin:17px auto 25px; }
+footer {
+  padding:28px 7%; border-top:1px solid #ffffff12;
+  display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  color:var(--muted); font-size:11px;
+}
+footer strong { color:var(--cyan); font-family:Orbitron; }
+.reveal { opacity:0; transform:translateY(22px); transition:opacity .7s,transform .7s; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+@keyframes rotate { to { transform:rotate(360deg); } }
+@media(max-width:800px) {
+  header { height:72px; }
+  .menu { display:block; }
+  nav {
+    display:none; position:absolute; top:71px; left:0; right:0;
+    background:#0b0e16; padding:25px 7%; flex-direction:column;
+    align-items:stretch; gap:22px; border-bottom:1px solid var(--line);
+  }
+  nav.open { display:flex; }
+  .nav-cta { text-align:center; }
+  .hero { grid-template-columns:1fr; padding-top:65px; gap:5px; }
+  .hero-copy { position:relative; z-index:2; }
+  .visual { min-height:420px; }
+  .portrait { width:min(310px,75%); }
+  .orbit { width:min(350px,90%); }
+  .label-left { left:2%; }
+  .label-right { right:2%; }
+  .cards { grid-template-columns:1fr; }
+  .section-head { align-items:start; flex-direction:column; }
+}
+@media(max-width:440px) {
+  header { padding:0 5%; }
+  .logo { font-size:17px; }
+  .hero { padding:55px 5% 40px; }
+  h1 { letter-spacing:-2px; }
+  .metrics { gap:17px; }
+  .metric strong { font-size:17px; }
+  .metric small { font-size:9px; }
+  .visual { min-height:360px; }
+  .visual-label { font-size:9px; padding:10px; }
+  .status-bar { margin:0 5%; }
+  section.content { padding:75px 5%; }
+  .cta { margin:0 5% 65px; padding:50px 18px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { animation:none!important; scroll-behavior:auto!important; transition:none!important; }
+  .reveal { opacity:1; transform:none; }
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="logo" href="#home">CYBER<span>CORE</span></a>
+  <button class="menu" id="menu" aria-label="Toggle navigation"
+    aria-expanded="false">☰</button>
+  <nav id="nav">
+    <a href="#home">HOME</a>
+    <a href="#technology">TECHNOLOGY</a>
+    <a href="#systems">SYSTEMS</a>
+    <a href="#contact" class="nav-cta">INITIALIZE ↗</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-copy">
+    <div class="eyebrow">THE NEXT EVOLUTION</div>
+    <h1>BEYOND<br>HUMAN <span class="outline">LIMITS.</span></h1>
+    <p class="description">
+      The future isn't something we wait for. It's something we build.
+      Merge human potential with machine precision and redefine what is possible.
+    </p>
+    <div class="actions">
+      <a href="#technology" class="primary">EXPLORE THE FUTURE ↗</a>
+      <a href="#systems" class="secondary">DISCOVER SYSTEMS</a>
+    </div>
+    <div class="metrics">
+      <div class="metric"><strong>99.9%</strong><small>SYSTEM UPTIME</small></div>
+      <div class="metric"><strong>∞</strong><small>HUMAN POTENTIAL</small></div>
+      <div class="metric"><strong>2077</strong><small>FUTURE PROTOCOL</small></div>
+    </div>
+  </div>
+
+  <div class="visual" aria-label="Cyborg visual and system telemetry">
+    <div class="orbit"><span class="orbit-dot"></span></div>
+    <img class="portrait"
+      src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=850&q=85"
+      alt="Futuristic digital cybernetic portrait"
+      onerror="this.style.opacity='.15'">
+    <div class="visual-label label-left">
+      <span class="pulse"></span> NEURAL LINK
+      <small>CONNECTION ESTABLISHED</small>
+    </div>
+    <div class="visual-label label-right">
+      CORE SYSTEM // 01
+      <small id="telemetry">SCANNING...</small>
+    </div>
+  </div>
+</section>
+
+<div class="status-bar">
+  <span>● ALL SYSTEMS OPERATIONAL</span>
+  <span>NEURAL NETWORK: ONLINE</span>
+  <span>SECURITY PROTOCOL: ACTIVE</span>
+</div>
+
+<section class="content" id="technology">
+  <div class="section-head reveal">
+    <h2>ENGINEERED FOR<br><span>WHAT'S NEXT.</span></h2>
+    <p>Technology should never be the limit. It should be the launchpad.
+       Discover the architecture of a new era.</p>
+  </div>
+  <div class="cards" id="systems">
+    <article class="card reveal">
+      <div class="number">01 / AUGMENTATION</div>
+      <div class="symbol">⌬</div>
+      <h3>NEURAL INTERFACE</h3>
+      <p>Connect thought and technology through an imagined neural ecosystem
+         designed for seamless human-machine interaction.</p>
+    </article>
+    <article class="card reveal">
+      <div class="number">02 / INTELLIGENCE</div>
+      <div class="symbol">⟁</div>
+      <h3>QUANTUM CORE</h3>
+      <p>Explore an advanced computing concept where intelligent systems
+         adapt, learn and evolve with every new challenge.</p>
+    </article>
+    <article class="card reveal">
+      <div class="number">03 / PERFORMANCE</div>
+      <div class="symbol">⌘</div>
+      <h3>CYBERNETIC ARMOR</h3>
+      <p>Precision-engineered protection meets next-generation materials
+         in a vision of enhanced mobility and resilience.</p>
+    </article>
+  </div>
+</section>
+
+<section class="cta reveal" id="contact">
+  <div class="eyebrow">YOUR FUTURE STARTS HERE</div>
+  <h2>READY TO <span>EVOLVE?</span></h2>
+  <p>The next generation doesn't follow the future.<br>It creates it.</p>
+  <a class="primary" href="mailto:hello@example.com">INITIATE SEQUENCE ↗</a>
+</section>
+</main>
+
+<footer>
+  <a href="#home"><strong>CYBERCORE_</strong></a>
+  <span>FICTIONAL CONCEPT • DESIGNED FOR THE FUTURE</span>
+  <span>© <span id="year"></span> CYBERCORE</span>
+</footer>
+
+<script>
+const menu = document.getElementById('menu');
+const nav = document.getElementById('nav');
+
+menu.addEventListener('click', () => {
+  const opened = nav.classList.toggle('open');
+  menu.setAttribute('aria-expanded', String(opened));
+  menu.textContent = opened ? '✕' : '☰';
+});
+
+nav.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('open');
+    menu.setAttribute('aria-expanded', 'false');
+    menu.textContent = '☰';
+  });
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const telemetry = document.getElementById('telemetry');
+telemetry.textContent = 'CORE STABLE // 98.7%';
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
